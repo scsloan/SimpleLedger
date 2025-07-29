@@ -5,7 +5,7 @@ namespace SimpleLedger.Data.Services
 {
     public class InMemoryTransactionService : ITransactionService
     {
-        private static List<Transaction> _transactions;
+        private static List<LedgerTransaction> _transactions;
 
         public InMemoryTransactionService()
         {
@@ -16,21 +16,21 @@ namespace SimpleLedger.Data.Services
         {
             if (_transactions == null)
             {
-                _transactions = new List<Transaction>
+                _transactions = new List<LedgerTransaction>
                 {
-                    new Transaction { Id = 1, Date = DateTime.Now.AddDays(-10), Payee = "Alice", Amount = 100, Category = "Pet Care"},
-                    new Transaction { Id = 2, Date = DateTime.Now.AddDays(-5), Payee = "Bob", Amount = -50, Category = "Auto Service" },
-                    new Transaction { Id = 3, Date = DateTime.Now.AddDays(-2), Payee = "Charlie", Amount = 200, Category= "Entertainment" }
+                    new LedgerTransaction { Id = 1, Date = DateTime.Now.AddDays(-10), Payee = "Alice", Amount = 100, Category = "Pet Care"},
+                    new LedgerTransaction { Id = 2, Date = DateTime.Now.AddDays(-5), Payee = "Bob", Amount = -50, Category = "Auto Service" },
+                    new LedgerTransaction { Id = 3, Date = DateTime.Now.AddDays(-2), Payee = "Charlie", Amount = 200, Category= "Entertainment" }
                 };
             }
         }
 
-        public List<Transaction> GetTransactions()
+        public List<LedgerTransaction> GetTransactions()
         {
             return _transactions;
         }
 
-        public int SaveTransaction(Transaction transaction)
+        public int SaveTransaction(LedgerTransaction transaction)
         {
             if (transaction == null)
                 throw new ArgumentNullException(nameof(transaction));

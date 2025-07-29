@@ -19,7 +19,11 @@
                 <td>@entry.Payee</td>
                 <td>@entry.Category</td>
                 <td>@entry.Amount.ToString("C")</td>
-                <td></td>
+                <td>
+                    <button class="remove-transaction btn btn-danger" onclick="RemoveTransaction(@entry.Id)">
+                        Delete
+                    </button>
+                </td>
             </tr>
         }
     </tbody>

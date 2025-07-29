@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public List<Transaction> Transactions { get; set; }
+        public List<LedgerTransaction> Transactions { get; set; }
 
         public decimal Balance
         {
@@ -14,7 +14,7 @@
 
         public Ledger() 
         { 
-            Transactions = new List<Transaction>();
+            Transactions = new List<LedgerTransaction>();
         }
     }
 }

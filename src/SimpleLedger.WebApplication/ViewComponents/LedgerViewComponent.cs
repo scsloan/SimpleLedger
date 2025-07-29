@@ -10,7 +10,7 @@ namespace SimpleLedger.WebApplication.ViewComponents
 
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(List<Transaction> transactions)
+        public async Task<IViewComponentResult> InvokeAsync(List<LedgerTransaction> transactions)
         {
             Ledger model = new Ledger();
             model.Transactions = transactions;

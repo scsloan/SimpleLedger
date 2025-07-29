@@ -4,7 +4,7 @@ namespace SimpleLedger.WebApplication.Models.Home
 {
     public class LedgerViewModel
     {
-        public  List<Transaction> Transactions { get; set; }
+        public  List<LedgerTransaction> Transactions { get; set; }
 
         public decimal TotalBalance
         {
@@ -12,7 +12,7 @@ namespace SimpleLedger.WebApplication.Models.Home
         }
         public LedgerViewModel()
         {
-            Transactions = new List<Transaction>();
+            Transactions = new List<LedgerTransaction>();
         }
     }
 }

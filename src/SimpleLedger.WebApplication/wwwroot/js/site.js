@@ -1,4 +1,13 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
+function RemoveTransaction(transactionId) {
+    var _payload = {
+        TransactionId: transactionId
+    };
 
-// Write your JavaScript code.
+    console.log(_payload);
+
+    $.post('/Transaction/Delete/', _payload, function () {
+        alert('Transaction Deleted');
+        location.reload(true);
+    });
+}

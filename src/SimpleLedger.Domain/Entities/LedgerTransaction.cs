@@ -1,6 +1,6 @@
 ﻿namespace SimpleLedger.Domain.Entities
 {
-    public class Transaction
+    public class LedgerTransaction
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }

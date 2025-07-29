@@ -5,7 +5,7 @@ namespace SimpleLedger.Data.Services.Interface
     public interface ITransactionService
     {
         void DeleteTransaction(int id);
-        List<Transaction> GetTransactions();
-        int SaveTransaction(Transaction transaction);
+        List<LedgerTransaction> GetTransactions();
+        int SaveTransaction(LedgerTransaction transaction);
     }
 }
