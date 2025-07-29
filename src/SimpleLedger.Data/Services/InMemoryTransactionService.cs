@@ -20,9 +20,11 @@ namespace SimpleLedger.Data.Services
             {
                 _transactions = new List<LedgerTransaction>
                 {
-                    new LedgerTransaction { Id = 1, Date = DateTime.Now.AddDays(-10), Payee = "Alice", Amount = 100, Category = "Pet Care"},
-                    new LedgerTransaction { Id = 2, Date = DateTime.Now.AddDays(-5), Payee = "Bob", Amount = -50, Category = "Auto Service" },
-                    new LedgerTransaction { Id = 3, Date = DateTime.Now.AddDays(-2), Payee = "Charlie", Amount = 200, Category= "Entertainment" }
+                    new LedgerTransaction { Id = 1, Date = DateTime.Now.AddDays(-10), Payee = "Alice's Pet Car", Amount = -100, Category = "Pet Care"},
+                    new LedgerTransaction { Id = 2, Date = DateTime.Now.AddDays(-5), Payee = "Bob's Auto Service", Amount = -50, Category = "Auto Service" },
+                    new LedgerTransaction { Id = 3, Date = DateTime.Now.AddDays(-2), Payee = "Charlie's DJ Service", Amount = -200, Category= "Entertainment" },
+                    new LedgerTransaction { Id = 4, Date = DateTime.Now.AddDays(-2), Payee = "Bob's Auto Service", Amount = 50, Category= "Reimbursement" },
+                    new LedgerTransaction { Id =54, Date = DateTime.Now.AddDays(-2), Payee = "Paycheck", Amount = 1500, Category= "Paycheck" }
                 };
             }
         }
@@ -72,9 +74,19 @@ namespace SimpleLedger.Data.Services
 
         public List<LedgerTransaction> SearchTransactions(string category, string payee)
         {
-                return _transactions.Where(t => (string.IsNullOrEmpty(category) || t.Category == category) &&
-                                                (string.IsNullOrEmpty(payee) || t.Payee == payee))
-                                    .ToList();  
+            List<LedgerTransaction> tmp = _transactions;
+
+            if (!String.IsNullOrEmpty(category))
+            {
+                tmp = _transactions.Where(t => t.Category == category).ToList();
+            }
+
+            if(!String.IsNullOrEmpty(payee))
+            {
+                tmp = _transactions.Where(t => t.Payee == payee).ToList();
+            }
+
+            return tmp;
         }
 
         public decimal GetCurrrentBalance()

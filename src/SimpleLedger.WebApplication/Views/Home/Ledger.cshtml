@@ -6,7 +6,7 @@
 
 <h2>View Ledger</h2>
 
-@await Component.InvokeAsync("Ledger", new { transactions = Model.Transactions })
+@await Component.InvokeAsync("LedgerTable", new { transactions = Model.Transactions, showButtons = true})
 
 
 <div class="row">

@@ -1,3 +1,17 @@
 ﻿@model SimpleLedger.WebApplication.Models.Reports.ReportFilterModel
 
-@await Component.InvokeAsync("Ledger", new { transactions = Model.Results })
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync("LedgerTable", new { transactions = Model.Results, showButtons = false })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        @await Component.InvokeAsync("LedgerByCategory", new { transactions = Model.Results })
+    </div>
+    <div class="col">
+        @await Component.InvokeAsync("LedgerByPayee", new { transactions = Model.Results })
+    </div>
+</div>

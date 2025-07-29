@@ -1,5 +1,4 @@
-﻿@model SimpleLedger.Domain.Entities.Ledger
-
+﻿@model SimpleLedger.WebApplication.Models.ViewComponents.LedgerTable.LedgerTableModel
 
 <table class="table">
     <thead>
@@ -20,9 +19,12 @@
                 <td>@entry.Category</td>
                 <td>@entry.Amount.ToString("C")</td>
                 <td>
-                    <button class="remove-transaction btn btn-danger" onclick="RemoveTransaction(@entry.Id)">
-                        Delete
-                    </button>
+                    @if(Model.ShowButtons)
+                    {
+                        <button class="remove-transaction btn btn-danger" onclick="RemoveTransaction(@entry.Id)">
+                            Delete
+                        </button>
+                    }
                 </td>
             </tr>
         }
@@ -30,7 +32,7 @@
     <tfoot>
         <tr>
             <td colspan="3" class="text-end"><strong>Total:</strong></td>
-            <td>@Model.Balance.ToString("C")</td>
+            <td>@Model.Transactions.Sum(t => t.Amount).ToString("C")</td>
             <td></td>
         </tr>
     </tfoot>
