@@ -1,0 +1,9 @@
+﻿@model SimpleLedger.WebApplication.Models.Home.LedgerViewModel
+
+@{
+    ViewData["Title"] = "Ledger";
+}
+
+<h2>View Ledger</h2>
+
+@await Component.InvokeAsync("Ledger", new { transactions = Model.Transactions });
