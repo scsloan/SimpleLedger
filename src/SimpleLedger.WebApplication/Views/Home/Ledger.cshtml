@@ -6,4 +6,28 @@
 
 <h2>View Ledger</h2>
 
-@await Component.InvokeAsync("Ledger", new { transactions = Model.Transactions });
+@await Component.InvokeAsync("Ledger", new { transactions = Model.Transactions })
+
+
+<div class="row">
+    <div class="col">
+        <button class="add-transaction btn btn-primary">
+            Add Transaction
+        </button>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        $(function(){
+            $('.add-transaction').on('click', function () {
+
+                $('#modalContainer').load('/Transaction/AddTransaction', null, function(){
+                    $('#modalContainer').modal('show');
+                });
+            });
+        });
+    </script>
+}

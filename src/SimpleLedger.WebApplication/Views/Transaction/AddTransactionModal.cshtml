@@ -1,0 +1,48 @@
+﻿
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Transaction</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="AddTransactionForm">
+                <div class="row">
+                    <div class="col-2">Date</div>
+                    <div class="col"><input type="date" name="Date" class="form-control"/></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Payee</div>
+                    <div class="col"><input type="text" name="Payee" class="form-control" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Amount</div>
+                    <div class="col"><input type="number" name="Amount" class="form-control" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-2">Category</div>
+                    <div class="col"><input type="text" name="Category" class="form-control" /></div>
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="AddTransactionForm_Save">Save changes</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $('#AddTransactionForm_Save').on('click', function(){
+            var _payload = $("#AddTransactionForm").serialize();
+            
+
+            $.post('/Transaction/Save/', _payload, function(){
+                alert('Transaction Saved');
+                location.reload(true);
+            });
+        });
+    });
+</script>
