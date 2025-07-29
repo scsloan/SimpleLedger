@@ -7,7 +7,7 @@ on:
       DOTNET_CORE_VERSION:
         description: '.NET Core version to use'
         required: true
-        default: '9.0.x'
+        default: '9.x.x'
       CONTAINER_APP_NAME:
         description: 'Name of the Container App'
         required: true
@@ -25,7 +25,7 @@ on:
         required: true
         default: 'oftregistry20250728223605'
 env:
-  DOTNET_CORE_VERSION: 9.0.x
+  DOTNET_CORE_VERSION: 9.x.x
   CONTAINER_APP_NAME: simpleledger.webapplication-container-app
   CONTAINER_APP_ENVIRONMENT_NAME: OFTEnv20250728223127
   RESOURCE_GROUP: OFT
