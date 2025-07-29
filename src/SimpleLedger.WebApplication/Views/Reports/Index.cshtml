@@ -1,0 +1,48 @@
+﻿@model SimpleLedger.WebApplication.Models.Reports.ReportIndexModel
+
+
+<div class="row"> 
+    <form id="ReportFilterForm">
+        <div class="col-2">
+            <span>Category</span>
+        </div>
+        <div class="col-3">
+            <select id="CategoryFilter" class="form-select" name="Category">
+                <option value="">All Categories</option>
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category">@category</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+            Payee
+        </div>
+        <div class="col-3">
+            <input type="text" name="Payee" class="form-control" placeholder="Enter Payee Name" />
+        </div>
+        <div class="col-2">
+            <button id="ReportFilterForm_Filter" class="btn btn-primary" type="button">Filter</button>
+        </div>
+    </form>
+</div>
+
+<div class="row" id="FilterResults">
+
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function(){
+            $('#ReportFilterForm_Filter').on('click', function(){
+                var _payload = $('#ReportFilterForm').serializeArray();
+
+                console.log(_payload);
+                $('#FilterResults').load('/Reports/RunReport', _payload, function(){
+                
+                });
+            });
+        })
+    </script>
+}

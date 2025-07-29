@@ -6,6 +6,7 @@ builder.Services.AddControllersWithViews();
 //Do all of our DI
 
 builder.Services.AddScoped<SimpleLedger.Data.Services.Interface.ITransactionService, SimpleLedger.Data.Services.InMemoryTransactionService>();
+builder.Services.AddScoped<SimpleLedger.Data.Services.Interface.ICategoryService, SimpleLedger.Data.Services.InMemoryTransactionService>();
 
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SimpleLedger.Data.Services.Interface;
+using SimpleLedger.Domain.Enums;
 using SimpleLedger.WebApplication.Models.Home;
 
 namespace SimpleLedger.WebApplication.Controllers
@@ -16,7 +17,13 @@ namespace SimpleLedger.WebApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            DashboardModel model = new DashboardModel();
+            model.Balance = _transactionSrv.GetCurrrentBalance();
+
+            model.LastDebits = _transactionSrv.GetLastTransactions(TransactionType.Debit, 5);
+            model.LastCredits = _transactionSrv.GetLastTransactions(TransactionType.Credit, 5);
+
+            return View(model);
         }
 
         public async Task<IActionResult> Ledger()

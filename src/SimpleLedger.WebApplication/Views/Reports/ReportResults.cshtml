@@ -1,0 +1,3 @@
+﻿@model SimpleLedger.WebApplication.Models.Reports.ReportFilterModel
+
+@await Component.InvokeAsync("Ledger", new { transactions = Model.Results })

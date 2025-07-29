@@ -36,7 +36,7 @@
 <script>
     $(function(){
         $('#AddTransactionForm_Save').on('click', function(){
-            var _payload = $("#AddTransactionForm").serialize();
+            var _payload = $("#AddTransactionForm").serializeArray();
             
 
             $.post('/Transaction/Save/', _payload, function(){

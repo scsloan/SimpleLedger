@@ -1,9 +1,11 @@
 ﻿using SimpleLedger.Data.Services.Interface;
 using SimpleLedger.Domain.Entities;
+using SimpleLedger.Domain.Enums;
+using System.Reflection;
 
 namespace SimpleLedger.Data.Services
 {
-    public class InMemoryTransactionService : ITransactionService
+    public class InMemoryTransactionService : ITransactionService, ICategoryService
     {
         private static List<LedgerTransaction> _transactions;
 
@@ -61,6 +63,28 @@ namespace SimpleLedger.Data.Services
             {
                 _transactions.Remove(transaction);
             }
+        }
+
+        public List<string> GetCategories()
+        {
+            return _transactions.Select(x => x.Category).Distinct().ToList();
+        }
+
+        public List<LedgerTransaction> SearchTransactions(string category, string payee)
+        {
+                return _transactions.Where(t => (string.IsNullOrEmpty(category) || t.Category == category) &&
+                                                (string.IsNullOrEmpty(payee) || t.Payee == payee))
+                                    .ToList();  
+        }
+
+        public decimal GetCurrrentBalance()
+        {
+            return _transactions.Sum(t => t.Amount);
+        }
+
+        public List<LedgerTransaction> GetLastTransactions(TransactionType TypeOfTransaction, int TakeAmt)
+        {
+            return _transactions.Where(t => t.TypeOfTransaction == TypeOfTransaction).OrderByDescending(t => t.Date).Take(TakeAmt).ToList();
         }
     }
 }

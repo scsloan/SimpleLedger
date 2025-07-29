@@ -1,4 +1,6 @@
-﻿namespace SimpleLedger.Domain.Entities
+﻿using SimpleLedger.Domain.Enums;
+
+namespace SimpleLedger.Domain.Entities
 {
     public class LedgerTransaction
     {
@@ -7,9 +9,17 @@
         public string Payee { get; set; }
         public decimal Amount { get; set; }
         public string Category { get; set; }
-        public bool IsCredit
+        public TransactionType TypeOfTransaction 
         {
-            get { return Amount > 0; }
+            get
+            {
+                if (Amount > 0)
+                {
+                     return TransactionType.Credit;
+                }
+
+                return TransactionType.Debit;
+            }
         }
     }
 }
